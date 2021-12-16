@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}update booking{% endblock %}
+
+{% block body %}
+    {% if messages %}
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        {{ form.media }}
+      <input type="submit" value="Update" >
+    </form>
+{% endblock body %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}list parking{% endblock %}
+
+{% block body %}
+    <h3>Ваши забронированые места</h3>
+    <div class="container">
+        <div class="row row-cols-12 row-cols-lg-5 g-2 g-lg-3">
+            {% for park in parking %}
+                <div class="col">
+                    <div class="card">
+                        <h5 class="card-header">Пользователь забронировавший место: {{ park.user }}</h5>
+                        <div class="card-body">
+                            <h6 class="card-title">Номер забронированного места: {{ park.parking_space }}</h6>
+                            <h6 class="card-title">Начало действия брони: {{ park.date_start_parking }}</h6>
+                            <h6 class="card-title">Конец действия брони: {{ park.date_finish_parking }}</h6>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+
+    {% if all_booking_admin is not None %}
+        <h3>Список всех забронированых мест</h3>
+            <div class="row">
+                {% for booking in all_booking_admin %}
+                    <div class="col">
+                        <div class="card">
+                            <h5 class="card-header">Пользователь забронировавший место: {{ booking.user }}</h5>
+                            <div class="card-body">
+                                <h6 class="card-title">Номер забронированного места: {{ booking.parking_space }}</h6>
+                                <h6 class="card-title">Начало действия брони: {{ booking.date_start_parking }}</h6>
+                                <h6 class="card-title">Конец действия брони: {{ booking.date_finish_parking }}</h6>
+                                <a href="{% url 'update_booking' booking.id %}" class="btn btn-primary">Изменить</a>
+                                <a href="{% url 'delete_booking' booking.id %}" class="btn btn-primary">Удалить</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+    {% endif %}
+
+{% endblock %}

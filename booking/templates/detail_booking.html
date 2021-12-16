@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}detail booking{% endblock %}
+
+{% block body %}
+
+
+<p>
+    Пользователь забронировавший место : {{ object.user }}<br>
+    Номер забронированного места : {{ object.parking_space }}<br>
+    Начало действия брони : {{ object.date_start_parking}}<br>
+    Конец действия брони : {{ object.date_finish_parking }}<br>
+</p>
+
+{% endblock %}
