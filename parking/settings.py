@@ -83,14 +83,14 @@ WSGI_APPLICATION = 'parking.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'parking',
-        'USER': 'postgres',
-        'PASSWORD': '1111',
-        'HOST': '127.0.0.1',
+        'NAME': os.getenv("POSTGRES_NAME"),
+        'USER': os.getenv("POSTGRES_USER"),
+        'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
-
+print(os.getenv("POSTGRES_NAME"))
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -141,9 +141,9 @@ REST_FRAMEWORK = {
     ]
 }
 
-import dj_database_url
-
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-
-django_heroku.settings(locals())
+# import dj_database_url
+#
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
+#
+# django_heroku.settings(locals())
